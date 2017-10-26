@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EmbeddedStock.Models
 {
@@ -7,11 +6,11 @@ namespace EmbeddedStock.Models
     {
         public Category()
         {
-            ComponentTypes =  new List<ComponentType>();    
+            ComponentTypes =  new List<ComponentTypeCategory>();    
         }
 
-        public int CategoryId { get; set; }
+        public long CategoryId { get; set; }
         public string Name { get; set; }
-        public ICollection<ComponentType> ComponentTypes { get; set; }
+        public ICollection<ComponentTypeCategory> ComponentTypes { get; set; }
     }
 }

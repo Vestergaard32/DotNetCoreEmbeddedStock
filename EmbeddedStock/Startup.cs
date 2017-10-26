@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using EmbeddedStock.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +10,11 @@ namespace EmbeddedStock
     {
         public Startup(IConfiguration configuration)
         {
+            using(var db = new DatabaseContext())
+            {
+                db.Database.EnsureCreated();
+            }
+
             Configuration = configuration;
         }
 
