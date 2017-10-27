@@ -50,7 +50,7 @@ namespace EmbeddedStock.Repositories
                     .Select(category => category.ComponentTypeId)
                     .Distinct()
                     .ToList();
-
+                
                 var result = db.ComponentType
                     .Where(type => listOfComponentTypeIds.Contains(type.ComponentTypeId))
                     .ToList();

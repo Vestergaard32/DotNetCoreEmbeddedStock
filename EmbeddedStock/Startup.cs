@@ -24,6 +24,10 @@ namespace EmbeddedStock
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddTransient<IComponentTypeRepository, ComponentTypeRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IComponentRepository, ComponentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,15 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using EmbeddedStock.Models;
+using EmbeddedStock.Repositories;
 
 namespace EmbeddedStock.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IComponentTypeRepository _componentTypeRepository;
+        private readonly IComponentRepository _componentRepository;
+
+        public HomeController(
+            ICategoryRepository categoryRepository, 
+            IComponentTypeRepository componentTypeRepository, 
+            IComponentRepository componentRepository)
+        {
+            _categoryRepository = categoryRepository;
+            _componentTypeRepository = componentTypeRepository;
+            _componentRepository = componentRepository;
+        }
+
         public IActionResult Index()
         {
             return View();
