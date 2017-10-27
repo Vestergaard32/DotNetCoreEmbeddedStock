@@ -1,0 +1,20 @@
+﻿@model CategoryViewModel
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "_Layout";
+}
+@{
+    var title = Model.Title != null ? Model : ViewBag.Title;
+    <h2>@title</h2>
+}
+
+<form asp-action="CreateCategory" asp-controller="Category">
+    <div class="form-group">
+        <label for="categoryName">Category Name</label>
+        <input type="text" class="form-control" id="categoryName" name="categoryName"/>
+    </div>
+    <button type="submit" class="btn btn-default">Create Category</button>
+</form>
+
+@Html.Partial("_Shitlist", Model.AllCategories);

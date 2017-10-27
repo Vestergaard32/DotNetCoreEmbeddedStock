@@ -17,32 +17,44 @@ namespace EmbeddedStock.Controllers
         // GET
         public IActionResult Index()
         {
-            return View("CategoryIndex");
+            var vm = new CategoryViewModel();
+            vm.AllCategories = _categoryRepository.GetAllCategories();
+            return View("Index", vm);
         }
-
-        public void CreateCategory(string categoryName)
+        
+        [HttpPost]
+        public IActionResult CreateCategory(string categoryName)
         {
             _categoryRepository.CreateCategory(categoryName);
+            return RedirectToAction("Index");
         }
 
-        public void DeleteCategory()
+        [HttpPost]
+        public IActionResult DeleteCategory(long categoryId)
         {
-            
+            _categoryRepository.DeleteCategory(categoryId);
+            return RedirectToAction("Index");
         }
 
-        public void UpdateCategory()
+        [HttpPost]
+        public IActionResult UpdateCategory(long categoryId, string categoryName)
         {
-            
+            _categoryRepository.UpdateCategory(categoryId, categoryName);
+            return RedirectToAction("Index");
         }
 
-        public Category GetSingleCategory()
+        [HttpPost]
+        public IActionResult ManageCategory(long categoryId, string categoryName, string button)
         {
-            return null;
-        }
-
-        public List<Category> GetAllCategories()
-        {
-            return null;
+            switch (button)
+            {
+                case "Update":
+                    return UpdateCategory(categoryId, categoryName);
+                case "Delete":
+                    return DeleteCategory(categoryId);
+                default:
+                    return RedirectToAction("Index");
+            }
         }
     }
 }

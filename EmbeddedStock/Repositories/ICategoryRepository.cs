@@ -1,4 +1,5 @@
-﻿using EmbeddedStock.Models;
+﻿using System.Collections.Generic;
+using EmbeddedStock.Models;
 
 namespace EmbeddedStock.Repositories
 {
@@ -8,5 +9,6 @@ namespace EmbeddedStock.Repositories
         void DeleteCategory(long categoryId);
         void UpdateCategory(long categoryId, string newCategoryName);
         Category GetCategory(long categoryId);
+        List<Category> GetAllCategories();
     }
 }

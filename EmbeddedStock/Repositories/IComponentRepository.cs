@@ -10,5 +10,6 @@ namespace EmbeddedStock.Repositories
         void UpdateComponent(Component updatedComponent);
         Component GetComponent(long componentId);
         List<Component> GetComponentsWithComponentType(long componentTypeId);
+        List<Component> GetAllComponents();
     }
 }

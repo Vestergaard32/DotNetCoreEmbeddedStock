@@ -1,0 +1,23 @@
+﻿@model List<Category>
+    
+<table class ="table">
+    <thead>
+    <th>Category</th>
+    <th>Manage</th>
+    </thead>
+    @foreach (var category in Model)
+    {
+        <tr>    
+        <form asp-action="ManageCategory" asp-controller="Category">
+            <td>
+                <input type="text" class="form-control" id="categoryName" name="categoryName" value="@category.Name" />
+            </td>
+            <td>
+                <input type="hidden" class="form-control" id="categoryId" name="categoryId" value="@category.CategoryId" />
+                <button type="submit" class="btn btn-success" name="Button" value="Update">Update Category</button>
+                <button type="submit" class="btn btn-danger" name="Button" value="Delete">Delete Category</button> 
+            </td>
+        </form>
+        </tr>
+    }
+</table>

@@ -33,6 +33,14 @@ namespace EmbeddedStock.Repositories
             }
         }
 
+        public List<ComponentType> GetAllComponentTypes()
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.ComponentType.ToList();
+            }
+        }
+
         public ComponentType GetComponentType(long componentTypeId)
         {
             using (var db = new DatabaseContext())

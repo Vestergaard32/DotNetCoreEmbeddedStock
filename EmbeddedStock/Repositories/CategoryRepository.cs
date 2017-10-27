@@ -1,4 +1,6 @@
-﻿using EmbeddedStock.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using EmbeddedStock.Models;
 
 namespace EmbeddedStock.Repositories
 {
@@ -39,6 +41,14 @@ namespace EmbeddedStock.Repositories
             using (var db = new DatabaseContext())
             {
                 return db.Categories.Find(categoryId);
+            }
+        }
+
+        public List<Category> GetAllCategories()
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Categories.ToList();
             }
         }
     }

@@ -51,5 +51,13 @@ namespace EmbeddedStock.Repositories
                 return components;
             }
         }
+
+        public List<Component> GetAllComponents()
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Components.ToList();
+            }
+        }
     }
 }
