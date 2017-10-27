@@ -1,5 +1,4 @@
-﻿using EmbeddedStock.Repositories;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace EmbeddedStock

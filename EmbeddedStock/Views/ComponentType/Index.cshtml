@@ -1,0 +1,38 @@
+﻿@model ComponentTypeViewModel
+
+
+@{
+    ViewBag.Title = "Component Types";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form asp-action="ManageComponentType" asp-controller="ComponentType">
+    <div class="form-group">
+        <label>Create new component type</label>
+    </div>
+    <button type="submit" name="Button" value="Create" class="btn btn-default">Create Category</button>
+</form>
+
+<table class ="table">
+    <thead>
+    <th>ComponentType</th>
+    <th>Manage</th>
+    </thead>
+    @foreach (var componenttype in Model.AllComponentTypes)
+    {
+        <tr>    
+            <td>
+                <label>@componenttype.ComponentName</label>
+            </td>
+            <td>
+                <form asp-action="ManageComponentType" asp-controller="ComponentType">
+                <input type="hidden" class="form-control" id="componentTypeId" name="componentTypeId" value="@componenttype.ComponentTypeId"/>
+                <button type="submit" class="btn btn-success" name="Button" value="Update">Details/Edit</button>
+                <button type="submit" class="btn btn-danger" name="Button" value="Delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
