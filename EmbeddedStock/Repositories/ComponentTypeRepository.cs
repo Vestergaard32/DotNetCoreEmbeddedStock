@@ -20,6 +20,7 @@ namespace EmbeddedStock.Repositories
             using (var db = new DatabaseContext())
             {
                 db.ComponentType.Remove(db.ComponentType.Find(componentTypeId));
+                db.SaveChanges();
             }
         }
 
