@@ -28,9 +28,10 @@
             </td>
             <td>
                 <form asp-action="ManageComponentType" asp-controller="ComponentType">
-                <input type="hidden" class="form-control" id="componentTypeId" name="componentTypeId" value="@componenttype.ComponentTypeId"/>
-                <button type="submit" class="btn btn-success" name="Button" value="Update">Details/Edit</button>
-                <button type="submit" class="btn btn-danger" name="Button" value="Delete">Delete</button>
+                    <input type="hidden" class="form-control" id="componentTypeId" name="componentTypeId" value="@componenttype.ComponentTypeId"/>
+                    <button type="submit" class="btn btn-success" name="Button" value="Details">Details</button>
+                    <button type="submit" class="btn btn-success" name="Button" value="Edit">Edit</button>
+                    <button type="submit" class="btn btn-danger" name="Button" value="Delete">Delete</button>
                 </form>
             </td>
         </tr>

@@ -46,12 +46,14 @@ namespace EmbeddedStock.Controllers
         [HttpPost]
         public IActionResult ManageComponentType(long componentTypeId, string button)
         {
+            var vm = _componentTypeRepository.GetComponentType(componentTypeId);
             switch (button)
             {
                 case "Create":
-                    return CreateComponentType();
-                case "Update":
-                    var vm = _componentTypeRepository.GetComponentType(componentTypeId);
+                    return View("CreateComponentType");
+                case "Details":
+                    return View("ComponentTypeDetails", vm);
+                case "Edit":
                     return View("EditComponentType", vm);
                 case "Delete":
                     return DeleteComponentType(componentTypeId);
