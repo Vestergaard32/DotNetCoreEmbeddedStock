@@ -5,7 +5,7 @@ namespace EmbeddedStock.Repositories
 {
     public interface IComponentTypeRepository
     {
-        void CreateComponentType(ComponentType componentToSave);
+        long CreateComponentType(ComponentType componentToSave);
         void DeleteComponentType(long componentTypeId);
         void UpdateComponentType(ComponentType updatedComponentType);
         List<ComponentType> GetAllComponentTypes();

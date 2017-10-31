@@ -29,6 +29,7 @@ namespace EmbeddedStock
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IComponentRepository, ComponentRepository>();
             services.AddTransient<IESImageRepository, ESImageRepository>();
+            services.AddTransient<IComponentTypeCategoryRepository, ComponentTypeCategoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

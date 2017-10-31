@@ -6,13 +6,15 @@ namespace EmbeddedStock.Repositories
 {
     public class ComponentTypeRepository : IComponentTypeRepository
     {
-        public void CreateComponentType(ComponentType componentToSave)
+        public long CreateComponentType(ComponentType componentToSave)
         {
             using (var db = new DatabaseContext())
             {
                 db.ComponentType.Add(componentToSave);
                 db.SaveChanges();
             }
+
+            return componentToSave.ComponentTypeId;
         }
 
         public void DeleteComponentType(long componentTypeId)

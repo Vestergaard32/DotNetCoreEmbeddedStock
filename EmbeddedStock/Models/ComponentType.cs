@@ -10,7 +10,6 @@ namespace EmbeddedStock.Models
         public string Location { get; set; }
         public ComponentTypeStatus Status { get; set; }
         public string Datasheet { get; set; }
-        public string ImageUrl { get; set; }
         public string Manufacturer { get; set; }
         public string WikiLink { get; set; }
         public string AdminComment { get; set; }
