@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using EmbeddedStock.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmbeddedStock.Repositories
 {
@@ -48,7 +49,9 @@ namespace EmbeddedStock.Repositories
         {
             using (var db = new DatabaseContext())
             {
-                return db.ComponentType.Find(componentTypeId);
+                return db.ComponentType
+                    .Include(ct => ct.Image)
+                    .FirstOrDefault(c => c.ComponentTypeId == componentTypeId);
             }
         }
 

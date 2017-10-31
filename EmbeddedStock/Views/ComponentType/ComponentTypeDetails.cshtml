@@ -6,3 +6,20 @@
 }
 
 <h2>@ViewBag.Title</h2>
+<li>
+    <ul></ul>
+</li>
+<p asp-for="@Model.ComponentName"></p>
+<p asp-for="@Model.ComponentInfo"></p>
+<p asp-for="@Model.Location"></label>
+<p asp-for="@Model.Datasheet"></p>
+<p asp-for="@Model.Manufacturer"></p>
+<p asp-for="@Model.Status"></p>
+@foreach (var category in Model.ComponentTypeCategories)
+{
+    <p>@category.Category.Name</p>
+}
+<p asp-for="@Model.WikiLink"></p>
+<p asp-for="@Model.AdminComment"></p>
+<p>Image</p>
+<img src="data:image;base64,@Convert.ToBase64String(Model.Image.ImageData)" style="max-width: 300px; max-height: 300px"/>
