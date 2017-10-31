@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using EmbeddedStock.Models;
+﻿using EmbeddedStock.Models;
 using EmbeddedStock.Repositories;
 using Microsoft.AspNetCore.Mvc;
 

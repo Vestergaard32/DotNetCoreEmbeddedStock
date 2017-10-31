@@ -2,7 +2,6 @@
 using EmbeddedStock.Models;
 using EmbeddedStock.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace EmbeddedStock.Controllers
 {
