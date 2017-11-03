@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Components";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form asp-action="NewComponent" asp-controller="Component">
+    <div class="form-group">
+        <label>Create new component</label>
+    </div>
+    <button type="submit" name="Button" value="Create" class="btn btn-default">Create Component</button>
+</form>
+
+<form asp-action="SelectComponentType" asp-controller="Component">
+    <div class="form-group">
+        <label>Select Component Type</label>
+        <select asp-items="@ViewBag.ComponentTypes" name="componentTypeId"></select>
+    </div>
+    <button type="submit" name="Button" value="Create" class="btn btn-default">Select Component Type</button>
+</form>
+
+@if (ViewBag.Components != null)
+{
+    <table class="table">
+        <thead>
+        <th>Component Serial Number</th>
+        <th>Manage</th>
+        </thead>
+        @foreach (var component in ViewBag.Components)
+        {
+            <tr>
+                <td>
+                    <label>@component.SerialNo</label>
+                </td>
+                <td>
+                    <form asp-action="ManageComponent" asp-controller="Component">
+                        <input type="hidden" class="form-control" id="ComponentId" name="ComponentId" value="@component.ComponentId" />
+                        <button type="submit" class="btn btn-success" name="buttonValue" value="Details">Details</button>
+                        <button type="submit" class="btn btn-success" name="buttonValue" value="Edit">Edit</button>
+                        <button type="submit" class="btn btn-danger" name="buttonValue" value="Delete">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+}
