@@ -6,20 +6,30 @@
 }
 
 <h2>@ViewBag.Title</h2>
-<li>
-    <ul></ul>
-</li>
-<p asp-for="@Model.ComponentName"></p>
-<p asp-for="@Model.ComponentInfo"></p>
-<p asp-for="@Model.Location"></label>
-<p asp-for="@Model.Datasheet"></p>
-<p asp-for="@Model.Manufacturer"></p>
-<p asp-for="@Model.Status"></p>
+<h4>Component name:</h4>
+<p>@Model.ComponentName</p>
+<h4>Component Info</h4>
+<p>@Model.ComponentInfo</p>
+<h4>Location: </h4>
+<p>@Model.Location</p>
+<h4>Data sheet</h4>
+<p>@Model.Datasheet</p>
+<h4>Manufacturer: </h4>
+<p>@Model.Manufacturer</p>
+<h4>Status: </h4>
+<p>@Model.Status</p>
+<h4>Categories: </h4>
 @foreach (var category in Model.ComponentTypeCategories)
 {
     <p>@category.Category.Name</p>
 }
-<p asp-for="@Model.WikiLink"></p>
-<p asp-for="@Model.AdminComment"></p>
+<h4>Wiki:</h4>
+<p>@Model.WikiLink</p>
+<h4>Comment: </h4>
+<p>@Model.AdminComment</p>
 <p>Image</p>
-<img src="data:image;base64,@Convert.ToBase64String(Model?.Image?.ImageData)" style="max-width: 300px; max-height: 300px"/>
+@if(Model.Image?.ImageData != null)
+{
+    <img src="data:image;base64,@Convert.ToBase64String(Model.Image.ImageData)" style="max-width: 300px; max-height: 300px"/>    
+}
+
