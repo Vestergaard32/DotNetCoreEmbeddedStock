@@ -69,7 +69,10 @@ namespace EmbeddedStock.Controllers
             switch (buttonValue)
             {
                 case "Details":
-                    return Index();
+                    ComponentType componentType = _componentTypeRepository.GetComponentType(component.ComponentTypeId);
+                    ViewBag.ComponentTypeName = componentType.ComponentName;
+
+                    return View("ComponentDetails", component);
                     break;
                 case "Edit":
                     return View("EditComponent", component);
