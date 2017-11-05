@@ -1,0 +1,13 @@
+﻿@model List<ComponentType>
+
+@{
+    ViewBag.Title = "Component types";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var component in @Model)
+{
+    <h2>@component.ComponentName</h2>
+}
