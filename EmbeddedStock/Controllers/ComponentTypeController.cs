@@ -17,7 +17,8 @@ namespace EmbeddedStock.Controllers
         private readonly IComponentTypeCategoryRepository _componentTypeCategoryRepository;
 
         public ComponentTypeController(
-            IComponentTypeRepository componentTypeRepository, ICategoryRepository categoryRepository,
+            IComponentTypeRepository componentTypeRepository, 
+            ICategoryRepository categoryRepository,
             IComponentTypeCategoryRepository componentTypeCategoryRepository)
         {
             _componentTypeRepository = componentTypeRepository;
@@ -70,9 +71,10 @@ namespace EmbeddedStock.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditComponentType()
+        public IActionResult EditComponentType(ComponentType componentType)
         {
-            throw new NotImplementedException();
+            _componentTypeRepository.UpdateComponentType(componentType);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
