@@ -96,6 +96,7 @@ namespace EmbeddedStock.Controllers
                 case "Details":
                     return View("ComponentTypeDetails", vm);
                 case "Edit":
+                    ViewBag.CategoryCollection = new SelectList(_categoryRepository.GetAllCategories(), "CategoryId", "Name");                    
                     return View("EditComponentType", vm);
                 case "Delete":
                     return DeleteComponentType(componentTypeId);
