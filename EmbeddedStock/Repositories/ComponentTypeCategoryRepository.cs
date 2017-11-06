@@ -1,4 +1,7 @@
-﻿using EmbeddedStock.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using EmbeddedStock.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmbeddedStock.Repositories
 {
@@ -15,6 +18,19 @@ namespace EmbeddedStock.Repositories
                 });
 
                 db.SaveChanges();
+            }
+        }
+
+        public List<ComponentType> GetComponentTypesForCategory(long categoryId)
+        {
+            using (var db = new DatabaseContext())
+            {
+                List<ComponentType> results =  db.ComponentTypeCategories
+                    .Include(category => category.ComponentType)
+                    .Where(category => Equals(category.CategoryId, categoryId))
+                    .Select(category => category.ComponentType)
+                    .ToList();
+                return results;
             }
         }
     }
