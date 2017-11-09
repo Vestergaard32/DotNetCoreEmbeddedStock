@@ -71,10 +71,42 @@ namespace EmbeddedStock.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditComponentType(ComponentType componentType)
+        public IActionResult EditComponentType(string button, ComponentType input, IFormFile image, List<long> categoryIds)
         {
-            _componentTypeRepository.UpdateComponentType(componentType);
-            return RedirectToAction("Index");
+            switch (button)
+            {
+                case "Cancel":
+                    return RedirectToAction("Index");
+                case "Update":
+                    if (image == null)
+                    {
+                        var oldComponent = _componentTypeRepository.GetComponentType(input.ComponentTypeId);
+                        input.Image = oldComponent.Image;
+                    }
+                    if (image != null)
+                    {
+                        using (var ms = image.OpenReadStream())
+                        {
+                            var buffer = new byte[ms.Length];
+                            ms.Seek(0, SeekOrigin.Begin);
+                            ms.ReadAsync(buffer, 0, (int)ms.Length);
+                            var esImage = new ESImage {ImageData = buffer};
+                            input.Image = esImage;
+                        }
+                    }
+                    _componentTypeRepository.UpdateComponentType(input);
+                    var categories = _categoryRepository.GetAllCategories()
+                        .Where(category => categoryIds.Contains(category.CategoryId))
+                        .ToList();
+
+                    foreach (var category in categories)
+                    {
+                        _componentTypeCategoryRepository.CreateComponentTypeCategory(input, category);
+                    }
+                    return RedirectToAction("Index");
+                default:
+                    return RedirectToAction("Index");
+            }            
         }
 
         [HttpPost]
