@@ -31,8 +31,13 @@ namespace EmbeddedStock.Repositories
         {
             using (var db = new DatabaseContext())
             {
-                var dbComponent = db.ComponentType.Find(updatedComponentType.ComponentTypeId);
+                var dbComponent = db.ComponentType
+                    .Include(type => type.Image)
+                    .FirstOrDefault(type => Equals(type.ComponentTypeId, updatedComponentType.ComponentTypeId));
                 db.Entry(dbComponent).CurrentValues.SetValues(updatedComponentType);
+
+                var image = db.EsImages.Find(dbComponent.Image.ESImageId);
+                image.ImageData = updatedComponentType.Image.ImageData;
                 db.SaveChanges();
             }
         }

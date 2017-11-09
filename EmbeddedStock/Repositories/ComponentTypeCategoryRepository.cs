@@ -33,5 +33,20 @@ namespace EmbeddedStock.Repositories
                 return results;
             }
         }
+
+        public void ClearComponentTypeCategoriesForComponentType(long componentTypeId)
+        {
+            using (var db = new DatabaseContext())
+            {
+                List<ComponentTypeCategory> stuffToDelete = db.ComponentTypeCategories
+                    .Where(category => Equals(category.ComponentTypeId, componentTypeId))
+                    .ToList();
+
+                foreach (var stuff in stuffToDelete)
+                {
+                    db.ComponentTypeCategories.Remove(stuff);
+                }
+            }
+        }
     }
 }

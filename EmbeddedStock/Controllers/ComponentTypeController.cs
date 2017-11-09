@@ -94,11 +94,14 @@ namespace EmbeddedStock.Controllers
                             input.Image = esImage;
                         }
                     }
+                    
                     _componentTypeRepository.UpdateComponentType(input);
                     var categories = _categoryRepository.GetAllCategories()
                         .Where(category => categoryIds.Contains(category.CategoryId))
                         .ToList();
 
+                    _componentTypeCategoryRepository.ClearComponentTypeCategoriesForComponentType(input.ComponentTypeId);
+                    
                     foreach (var category in categories)
                     {
                         _componentTypeCategoryRepository.CreateComponentTypeCategory(input, category);
@@ -119,15 +122,16 @@ namespace EmbeddedStock.Controllers
         [HttpPost]
         public IActionResult ManageComponentType(long componentTypeId, string button)
         {
-            var vm = _componentTypeRepository.GetComponentType(componentTypeId);
             switch (button)
             {
                 case "Create":
                     ViewBag.CategoryCollection = new SelectList(_categoryRepository.GetAllCategories(), "CategoryId", "Name");
                     return View("CreateComponentType");
                 case "Details":
-                    return View("ComponentTypeDetails", vm);
+                    var vmodel = _componentTypeRepository.GetComponentType(componentTypeId);
+                    return View("ComponentTypeDetails", vmodel);
                 case "Edit":
+                    var vm = _componentTypeRepository.GetComponentType(componentTypeId);
                     ViewBag.CategoryCollection = new SelectList(_categoryRepository.GetAllCategories(), "CategoryId", "Name");                    
                     return View("EditComponentType", vm);
                 case "Delete":

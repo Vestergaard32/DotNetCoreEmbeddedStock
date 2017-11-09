@@ -7,5 +7,6 @@ namespace EmbeddedStock.Repositories
     {
         void CreateComponentTypeCategory(ComponentType componentType, Category category);
         List<ComponentType> GetComponentTypesForCategory(long categoryId);
+        void ClearComponentTypeCategoriesForComponentType(long componentTypeId);
     }
 }
