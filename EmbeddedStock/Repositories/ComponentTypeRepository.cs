@@ -26,7 +26,7 @@ namespace EmbeddedStock.Repositories
                 db.SaveChanges();
             }
         }
-
+        
         public void UpdateComponentType(ComponentType updatedComponentType)
         {
             using (var db = new DatabaseContext())
@@ -36,8 +36,15 @@ namespace EmbeddedStock.Repositories
                     .FirstOrDefault(type => Equals(type.ComponentTypeId, updatedComponentType.ComponentTypeId));
                 db.Entry(dbComponent).CurrentValues.SetValues(updatedComponentType);
 
-                var image = db.EsImages.Find(dbComponent.Image.ESImageId);
-                image.ImageData = updatedComponentType.Image.ImageData;
+                if (dbComponent.Image != null)
+                {
+                    var image = db.EsImages.Find(dbComponent.Image.ESImageId);
+                    image.ImageData = updatedComponentType.Image.ImageData;
+                } else
+                {
+                    dbComponent.Image = updatedComponentType.Image;
+                }
+
                 db.SaveChanges();
             }
         }

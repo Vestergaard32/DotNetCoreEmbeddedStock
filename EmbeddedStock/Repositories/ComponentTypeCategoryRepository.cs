@@ -46,6 +46,8 @@ namespace EmbeddedStock.Repositories
                 {
                     db.ComponentTypeCategories.Remove(stuff);
                 }
+
+                db.SaveChanges();
             }
         }
     }
