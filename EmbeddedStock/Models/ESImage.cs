@@ -2,8 +2,10 @@
 
 namespace EmbeddedStock.Models
 {
+    // ReSharper disable once InconsistentNaming
     public class ESImage
     {
+        // ReSharper disable once InconsistentNaming
         public long ESImageId { get; set; }
         [MaxLength(128)]
         public string ImageMimeType { get; set; }

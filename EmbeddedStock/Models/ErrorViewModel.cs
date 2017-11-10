@@ -1,5 +1,3 @@
-using System;
-
 namespace EmbeddedStock.Models
 {
     public class ErrorViewModel

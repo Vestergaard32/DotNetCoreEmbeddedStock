@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using EmbeddedStock.Models;
@@ -35,9 +34,9 @@ namespace EmbeddedStock.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateComponentType(string Button, ComponentType input, IFormFile image, List<long> CategoryIds)
+        public IActionResult CreateComponentType(string button, ComponentType input, IFormFile image, List<long> categoryIds)
         {
-            switch (Button)
+            switch (button)
             {
                 case "Cancel":
                     return RedirectToAction("Index");
@@ -59,7 +58,7 @@ namespace EmbeddedStock.Controllers
                     _componentTypeRepository.CreateComponentType(input);
 
                     var categories = _categoryRepository.GetAllCategories()
-                        .Where(category => CategoryIds.Contains(category.CategoryId))
+                        .Where(category => categoryIds.Contains(category.CategoryId))
                         .ToList();
 
                     foreach (var category in categories)
