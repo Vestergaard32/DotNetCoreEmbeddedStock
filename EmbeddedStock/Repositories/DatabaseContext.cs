@@ -25,7 +25,7 @@ namespace EmbeddedStock.Repositories
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("SuperSql"));
+            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
