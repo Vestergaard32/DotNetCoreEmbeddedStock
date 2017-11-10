@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using EmbeddedStock.Repositories;
 using EmbeddedStock.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -73,14 +69,11 @@ namespace EmbeddedStock.Controllers
                     ViewBag.ComponentTypeName = componentType.ComponentName;
 
                     return View("ComponentDetails", component);
-                    break;
                 case "Edit":
                     return View("EditComponent", component);
-                    break;
                 case "Delete":
                     _componentRepository.DeleteComponent(componentId);
                     return Index();
-                    break;
                 default:
                     return Index();
             }

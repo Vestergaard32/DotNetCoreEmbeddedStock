@@ -2,7 +2,7 @@
 
 namespace EmbeddedStock.Repositories
 {
-    // ReSharper disable once InconsistentNaming
+    // ReSharper disable InconsistentNaming
     public interface IESImageRepository
     {
         void CreateESImage(ESImage image);
