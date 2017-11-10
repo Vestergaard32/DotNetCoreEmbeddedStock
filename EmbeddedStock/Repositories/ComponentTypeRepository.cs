@@ -59,12 +59,22 @@ namespace EmbeddedStock.Repositories
 
         public ComponentType GetComponentType(long componentTypeId)
         {
+            ComponentType fetchedComponentType = null;
+
             using (var db = new DatabaseContext())
             {
-                return db.ComponentType
+                fetchedComponentType = db.ComponentType
                     .Include(ct => ct.Image)
+                    .Include(ct => ct.ComponentTypeCategories)
                     .FirstOrDefault(c => c.ComponentTypeId == componentTypeId);
+
+                foreach (var category in fetchedComponentType.ComponentTypeCategories)
+                {
+                    category.Category = db.Categories.Find(category.CategoryId);
+                }
             }
+
+            return fetchedComponentType;
         }
 
         public List<ComponentType> GetComponentTypesWithCategory(long categoryId)
